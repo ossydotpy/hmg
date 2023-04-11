@@ -1,7 +1,8 @@
 import requests
 import json
+import os
 
-api_key = 'mainnet9xRVFCPHypbGnNyiFmtkgEOvZrZFmYn6'
+api_key = os.getenv('BLOCKFROST_API_KEY')
 policy_id = 'fec7dfa59902eb40f65a62812662769962d5662f2a6bc2804b829881'
 url = f'https://cardano-mainnet.blockfrost.io/api/v0/assets/policy/{policy_id}'
 

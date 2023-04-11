@@ -48,3 +48,18 @@
     "metadata": null
 }
 }
+
+,
+
+"fec7dfa59902eb40f65a62812662769962d5662f2a6bc2804b829881": {
+    "asset": "fec7dfa59902eb40f65a62812662769962d5662f2a6bc2804b829881",
+    "policy_id": "fec7dfa59902eb40f65a62812662769962d5662f2a6bc2804b829881",
+    "asset_name": null,
+    "fingerprint": "asset18sje7puqcxqas9wfnf2auya7dfc4hc67wzfhg3",
+    "quantity": "0",
+    "initial_mint_tx_hash": "c3a91b9e119298922415abdc42eed9a35e190426166824c859370b1e3229eaa4",
+    "mint_or_burn_count": 2,
+    "onchain_metadata": null,
+    "onchain_metadata_standard": null,
+    "metadata": null
+}
