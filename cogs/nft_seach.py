@@ -14,7 +14,7 @@ class NFTCog(commands.Cog):
 
     @staticmethod
     def retrieve_features():
-        with open('features.json', 'r') as features:
+        with open('functions/features.json', 'r') as features:
             data = json.load(features)
         return data
 
@@ -43,13 +43,13 @@ class NFTCog(commands.Cog):
                         )
                         embed.add_field(
                             name='Monster Stats',
-                            value=f"Defense:\t\t **{result['defense']}**\n"
-                                f"Strength:\t\t **{result['strength']}**\n"
-                                f"Dexterity: \t\t**{result['dexterity']}**\n"
-                                f"Hit Points: \t\t**{result['hit_points']}**\n"
-                                f"Perception:\t\t **{result['perception']}**\n"
-                                f"Constitution:\t\t **{result['constitution']}**\n"
-                                f"Vehicle Handling:\t\t **{result['vehicle_handling']}**\n",
+                            value=f"Defense:\t\t\t\t\t**{result['defense']}**\n"
+                                f"Strength:\t\t\t\t\t**{result['strength']}**\n"
+                                f"Dexterity:\t\t\t\t\t**{result['dexterity']}**\n"
+                                f"Hit Points:\t\t\t\t**{result['hit_points']}**\n"
+                                f"Perception:\t\t\t\t**{result['perception']}**\n"
+                                f"Constitution:\t\t\t**{result['constitution']}**\n"
+                                f"Vehicle Handling:\t**{result['vehicle_handling']}**\n",
                             inline=False
                         )
                         embed.add_field(

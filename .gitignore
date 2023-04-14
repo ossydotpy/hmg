@@ -1,6 +1,7 @@
 .env
 important.md
 vv.py
-ss.py
+./ss.py
+./nft_metadata.json
+./schema.json
 nft_metadata.json
-schema.json
