@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 import asyncio
 import tracemalloc
+from discord import Activity, ActivityType
 
 # Load environment variables from .env file
 load_dotenv()
@@ -22,6 +23,7 @@ bot = commands.Bot(command_prefix='-', intents=intents)
 @bot.event
 async def on_ready():
     print('Bot is ready.')
+    await bot.change_presence(activity=Activity(type=ActivityType.listening, name='your mom moan'))
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
             try:
