@@ -4,7 +4,7 @@ from discord.ext import commands
 import discord
 import datetime
 
-class NFTCog(commands.Cog):
+class PROTOCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
@@ -14,12 +14,12 @@ class NFTCog(commands.Cog):
 
     @staticmethod
     def retrieve_features():
-        with open('functions/features.json', 'r') as features:
+        with open('functions/proto_features.json', 'r') as features:
             data = json.load(features)
         return data
 
     @commands.command()
-    async def search(self, ctx, keyword: str):
+    async def proto(self, ctx, keyword: str):
         nfts = self.retrieve_features()
         if keyword.startswith('#'):
             exact_match = re.match(r'^#(\d+)$', keyword)
@@ -38,7 +38,8 @@ class NFTCog(commands.Cog):
                     for result in results:
                         embed.add_field(
                             name='Monster Bio', 
-                            value=f"Class: **{result['class']}**\n"
+                            value=f"Name: **{result['name']}**\n"
+                            f"Class: **{result['class']}**\n"
                             f"Birth State: **{result['birth_state']}**"
                         )
                         embed.add_field(
@@ -66,5 +67,5 @@ class NFTCog(commands.Cog):
 
 
 async def setup(bot):
-    await bot.add_cog(NFTCog(bot))
+    await bot.add_cog(PROTOCog(bot))
 

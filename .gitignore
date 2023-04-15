@@ -4,4 +4,5 @@ vv.py
 ss.py
 ./nft_metadata.json
 ./schema.json
-functions/nft_metadata.json
+nft_metadata.json
+
