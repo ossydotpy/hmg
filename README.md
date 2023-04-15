@@ -13,3 +13,9 @@ You can do this by
 - select your desired features using [this code](https://github.com/ossydotpy/hmg/blob/master/save_features.py)
 - modify the [search cog](https://github.com/ossydotpy/hmg/blob/master/cogs/nft_seach.py) to suit your features.
 - star this repo(haha, not required)
+
+# NOTE:
+In this version, i've added a couple things
+- separated the cogs into three
+--one for each collection under the project.
+- separated the save important metadata function into two files to help distiguish between the two types on nfts in the prio 360 drop.
