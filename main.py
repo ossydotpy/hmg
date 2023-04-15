@@ -16,7 +16,7 @@ TOKEN = os.getenv('BOT_TOKEN')
 intents = discord.Intents.all()
 
 # Create bot instance
-bot = commands.Bot(command_prefix='-', intents=intents)
+bot = commands.Bot(command_prefix='>', intents=intents)
 
 
 # Load cogs on startup
