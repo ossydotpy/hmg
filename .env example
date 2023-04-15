@@ -1,2 +1,3 @@
 BLOCKFROST_API_KEY=<your api key here>
 BOT_TOKEN=<your discord bot token>
+COLLECTION_POLICY_ID=<collection policy id here>
