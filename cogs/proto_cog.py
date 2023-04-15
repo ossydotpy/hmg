@@ -14,7 +14,7 @@ class PROTOCog(commands.Cog):
 
     @staticmethod
     def retrieve_features():
-        with open('functions/proto_features.json', 'r') as features:
+        with open('data/proto_features.json', 'r') as features:
             data = json.load(features)
         return data
 

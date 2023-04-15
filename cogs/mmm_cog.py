@@ -14,7 +14,7 @@ class MMMCog(commands.Cog):
 
     @staticmethod
     def retrieve_features():
-        with open('functions/features.json', 'r') as features:
+        with open('data/features.json', 'r') as features:
             data = json.load(features)
         return data
 

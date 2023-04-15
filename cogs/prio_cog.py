@@ -14,7 +14,7 @@ class PRIOCog(commands.Cog):
 
     @staticmethod
     def retrieve_features():
-        with open('functions/prio_features.json', 'r') as features:
+        with open('data/prio_features.json', 'r') as features:
             data = json.load(features)
         return data
 
