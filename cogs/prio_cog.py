@@ -36,6 +36,10 @@ class PRIOCog(commands.Cog):
                     )
                     embed.set_author(name=f"Requested by {ctx.author.display_name}")
                     for result in results:
+                        embed.add_field(
+                                name='Name:', 
+                                value=f"**{result['name']}**\n"
+                            )
 
                         stats_left = (
                         f"Defense:\t\t**{result['defense']}**\n"
