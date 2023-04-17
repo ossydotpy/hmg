@@ -16,7 +16,7 @@ TOKEN = os.getenv('BOT_TOKEN')
 intents = discord.Intents.all()
 
 # Create bot instance
-bot = commands.Bot(command_prefix='-', intents=intents)
+bot = commands.Bot(command_prefix='-', intents=intents,help_command=None)
 
 
 # Load cogs on startup
@@ -32,6 +32,18 @@ async def on_ready():
             except Exception as e:
                 print(f'Error loading {filename}: {e}')
 
+@bot.command()
+async def statsguide(ctx):
+    embed = discord.Embed(title="Command List", description="how do i use the bot ser?", color=0x00ff00)
+
+    embed.add_field(name="-mmm #asset_number", value="query Militia NFT"
+    "eg: -mmm #1 will display HM Monster #1", inline=False)
+    embed.add_field(name="-prio #asset_number", value="query Prio Gang NFT"
+    "eg: -prio #1 will display HM Prio Monster #1", inline=False)
+    embed.add_field(name="-proto #asset_number", value="query Prototype NFT"
+    "eg: -proto #1 will display HM Prototype #1", inline=False)
+
+    await ctx.send(embed=embed)
 
 # Catch errors and throw helpful explanations
 @bot.event
