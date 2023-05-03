@@ -10,7 +10,7 @@ from discord import Activity, ActivityType
 load_dotenv()
 
 # Get bot token from environment variable
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = os.getenv("TEST_BOT")
 
 # Define intents
 intents = discord.Intents.all()
@@ -24,7 +24,7 @@ bot = commands.Bot(command_prefix=">", intents=intents)
 async def on_ready():
     print("Bot is ready.")
     await bot.change_presence(
-        activity=Activity(type=ActivityType.listening, name="your mom moan")
+        activity=Activity(type=ActivityType.playing, name="FFC")
     )
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
