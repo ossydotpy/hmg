@@ -4,12 +4,16 @@ The HMG Bot is a discord bot that's used for retrieving nft metadata for the Her
 
 # How to run the app
 1. Clone the repo
-2. make sure to invite the bot to your server
-3. run main.py
+2. Get your bot keys from [here](https://discord.com/developers/)
+3. create a `.env` file in the main directory. 
+Structure `TEST_BOT=your_bot_token`
+5. Run main.py
+Make sure to invite the bot to your server!
 
 # Customize the bot for your project.
 You can do this by 
 - change the policy ID in [this code](https://github.com/ossydotpy/hmg/blob/master/get_metadata.py)
 - select your desired features using [this code](https://github.com/ossydotpy/hmg/blob/master/save_features.py)
-- modify the [search cog](https://github.com/ossydotpy/hmg/blob/master/cogs/nft_seach.py) to suit your features.
+- modify [this code](https://github.com/ossydotpy/hmg/blob/master/cogs/prio_cog.py) to search through your saved features.
+
 - star this repo(haha, not required)
