@@ -4,6 +4,9 @@ vv.py
 ss.py
 ./nft_metadata.json
 ./schema.json
-nft_metadata.json
-
+functions/nft_metadata.json
+cogs/__pycache__
 discord.log
+nft_metadata.json
+discord.log
+
