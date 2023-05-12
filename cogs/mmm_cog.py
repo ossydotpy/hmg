@@ -88,4 +88,3 @@ class MMMCog(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(MMMCog(bot))
-

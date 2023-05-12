@@ -44,6 +44,7 @@ class PRIOCog(commands.Cog):
                             )
 
                         stats_left = (
+
                         f"Defense:\t\t**{result['defense']}**\n"
                         f"Strength:\t\t**{result['strength']}**\n"
                         f"Dexterity:\t\t**{result['dexterity']}**\n"
@@ -83,6 +84,7 @@ class PRIOCog(commands.Cog):
                 await interaction.followup.send(f"No results found for query: {keyword}",ephemeral=True)
         else:
             await interaction.followup.send("Search query must start with '#'",ephemeral=True)
+
 
 
 async def setup(bot):

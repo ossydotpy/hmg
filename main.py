@@ -15,6 +15,7 @@ load_dotenv()
 # Get bot token from environment variable
 TOKEN = os.getenv("TEST_BOT")
 
+
 # Define intents
 intents = discord.Intents.all()
 intents.members = True
@@ -23,12 +24,14 @@ intents.members = True
 bot = commands.Bot(command_prefix=">", intents=intents)
 
 
+
 # Load cogs on startup
 @bot.event
 async def on_ready():
     print("Bot is ready.")
     await bot.change_presence(
         activity=Activity(type=ActivityType.watching, name="PRICE ACTION")
+
     )
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
@@ -37,6 +40,7 @@ async def on_ready():
                 print(f"{filename[:-3]} loaded successfully.")
             except Exception as e:
                 print(f"Error loading {filename}: {e}")
+
 
 
 from typing import Literal, Optional
@@ -78,6 +82,7 @@ async def sync(
 
 
 @bot.event
+
 async def on_message(message):
     if (
         isinstance(message.channel, discord.DMChannel)
@@ -124,6 +129,7 @@ async def on_command_error(ctx, error):
         except discord.errors.Forbidden:
             await ctx.reply("skill issue")
         await ctx.message.delete()
+
 
 
 tracemalloc.start()

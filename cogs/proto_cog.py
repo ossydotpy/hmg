@@ -44,6 +44,7 @@ class PROTOCog(commands.Cog):
                             )
 
                         stats_left = (
+
                         f"Defense:\t\t**{result['defense']}**\n"
                         f"Strength:\t\t**{result['strength']}**\n"
                         f"Dexterity:\t\t**{result['dexterity']}**\n"
@@ -85,6 +86,6 @@ class PROTOCog(commands.Cog):
             await interaction.followup.send("Search query must start with '#'",ephemeral=True)
 
 
+
 async def setup(bot):
     await bot.add_cog(PROTOCog(bot))
-
