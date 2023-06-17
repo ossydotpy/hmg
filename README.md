@@ -11,7 +11,7 @@ The HMG Bot is a discord bot that's used for retrieving nft metadata for the Her
 `BOT_TOKEN=your_bot_token`
    to run the bot.
 edit other environmental variables if you want to use other fucntions that require them.\
-Reference the [.env exmaple](https://github.com/ossydotpy/hmg/blob/product/.env+example) file for variable names
+Reference the [.env exmaple](https://github.com/ossydotpy/hmg/blob/b0544bf402159db54dc35e580b040c351f86b888/.env%20example)) file for variable names
 5. Run main.py
 Make sure to invite the bot to your server!
 
