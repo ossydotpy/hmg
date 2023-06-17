@@ -7,7 +7,7 @@ The HMG Bot is a discord bot that's used for retrieving nft metadata for the Her
 2. Get your bot keys from [here](https://discord.com/developers/)
 3. create a `.env` file in the main directory. 
    copy and edit this variable
-`TEST_BOT=your_bot_token`
+`BOT_TOKEN=your_bot_token`
    to run the bot.
 edit other environmental variables if you want to use other fucntions that require them.
 reference .env exmaple file for variable names
