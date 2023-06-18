@@ -5,6 +5,8 @@ from discord import app_commands
 import discord
 import datetime
 
+import functions.buttons as buttons
+
 class PRIOCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -20,16 +22,21 @@ class PRIOCog(commands.Cog):
         return data
 
     @app_commands.command(name="prio")
-    async def prio(self, interaction: discord.Interaction, keyword: str):
-        await interaction.response.defer()
+    @app_commands.describe(number="example #10", hide="choose True to hide results otherwise False")
+    async def prio(self, interaction: discord.Interaction, number: str, hide: bool):
+        """"
+        Query HM Prio Gang asset.
+        begin asset number with a # tag
+        """
+        await interaction.response.defer(ephemeral=hide)
         nfts = self.retrieve_features()
-        if keyword.startswith('#'):
-            exact_match = re.match(r'^#(\d+)$', keyword)
+        if number.startswith('#'):
+            exact_match = re.match(r'^#(\d+)$', number)
             if exact_match:
                 number = int(exact_match.group(1))
                 results = [d for d in nfts if int(d['name'].split()[-1][1:]) == number]
             else:
-                results = [d for d in nfts if keyword.lower() in d['name'].lower()]
+                results = [d for d in nfts if number.lower() in d['name'].lower()]
             if results:
                     embed = discord.Embed(
                         title="NFT Search Results", 
@@ -79,11 +86,19 @@ class PRIOCog(commands.Cog):
                         
                         embed.set_thumbnail(url='https://hermonsters.com/core/views/96a589a588/assets/images/hm_logo.png')
                         embed.set_footer(text='type `-statsguide` for more')
-                    await interaction.followup.send(embed=embed)
+                        view = buttons.Buttons()
+                        view.add_item(
+                            discord.ui.Button(
+                                label=f"View on jpg.store",
+                                style=discord.ButtonStyle.green,
+                                url=f"https://www.jpg.store/asset/{result['id']}",
+                                emoji="<:hmoji:1042497799658410037>",)
+                            )
+                    await interaction.followup.send(embed=embed, ephemeral=hide, view=view)
             else:
-                await interaction.followup.send(f"No results found for query: {keyword}",ephemeral=True)
+                await interaction.followup.send(f"No results found for query: {number}",ephemeral=hide)
         else:
-            await interaction.followup.send("Search query must start with '#'",ephemeral=True)
+            await interaction.followup.send("Search query must start with '#'",ephemeral=hide)
 
 
 

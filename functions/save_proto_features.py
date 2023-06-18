@@ -22,6 +22,7 @@ max_points = {'Berserker': 395, 'Racer': 410,
 def save_important_metadata(meta):    
     imp = [{
             "name":value['onchain_metadata']['name'],
+            "id":value["asset"],
             "class":value['onchain_metadata']['Class'],
             "birth_state":value['onchain_metadata']['Birth State'],
             "image": "https://ipfs.blockfrost.dev/ipfs/" + value['onchain_metadata']['image'][7:],

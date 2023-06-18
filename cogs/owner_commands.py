@@ -1,5 +1,3 @@
-import discord
-from discord import app_commands
 from discord.ext import commands
 
 
@@ -7,39 +5,63 @@ class Admin(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(name="load")
+    @commands.command(hidden=True)
     @commands.is_owner()
-    async def load(self, interaction: discord.Interaction, extension: str):
+    async def load(self, ctx, extension: str):
         """load cogs"""
-        await interaction.response.defer(ephemeral=True)
         try:
             await self.bot.load_extension(f"cogs.{extension}")
-            await interaction.followup.send(f"{extension} loaded!")
+            await ctx.send(f"{extension} loaded!")
+            print(f"{extension} loaded!")
+            return
         except Exception as e:
-            await interaction.followup.send(e)
+            await ctx.send("error")
+            print(f"error loading {extension} because {e}")
+            return
 
-    @app_commands.command(name="unload")
+    @commands.command(hidden=True)
     @commands.is_owner()
-    async def unload(self, interaction: discord.Interaction, extension: str):
+    async def unload(self, ctx, extension: str):
         """unload cogs"""
-        await interaction.response.defer(ephemeral=True)
         try:
             await self.bot.unload_extension(f"cogs.{extension}")
-            await interaction.followup.send(f"{extension} unloaded!")
+            await ctx.send(f"{extension} unloaded!")
+            print(f"{extension} unloaded!")
+            return
         except Exception as e:
-            await interaction.followup.send(e)
+            await ctx.send("error")
+            print(f"error unloading {extension} because {e}")
+            return
 
-    @app_commands.command(name="reload")
+    @commands.command(hidden=True)
     @commands.is_owner()
-    async def reload(self, interaction: discord.Interaction, extension: str):
+    async def reload(self, ctx, extension: str):
         """reload cogs"""
-        await interaction.response.defer(ephemeral=True)
         try:
             await self.bot.reload_extension(f"cogs.{extension}")
-            await interaction.followup.send(f"{extension} reloaded!")
+            await ctx.send(f"{extension} reloaded!")
+            print(f"{extension} reloaded!")
+            return
         except Exception as e:
-            await interaction.followup.send(e)
+            await ctx.send("error")
+            print(f"error reloading{extension} because {e}")
+            return
+
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def reloadall(self, ctx):
+        """Reload all cogs"""
+        try:
+            cog_names = list(self.bot.extensions.keys())  # Create a copy of the keys
+            for cog_name in cog_names:
+                await self.bot.reload_extension(cog_name)
+            await ctx.send("All cogs reloaded!")
+            print("All cogs reloaded!")
+        except Exception as e:
+            await ctx.send("Error occurred while reloading cogs.")
+            print(f"Error reloading cogs: {e}")
+
 
 
 async def setup(bot):
-    await bot.add_cog(Admin(bot), guilds=[discord.Object(id=1096587951586164756)])
+    await bot.add_cog(Admin(bot))
