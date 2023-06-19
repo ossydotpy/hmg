@@ -13,7 +13,7 @@ from discord import Activity, ActivityType
 load_dotenv()
 
 # Get bot token from environment variable
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = os.getenv("TEST_BOT")
 
 
 # Define intents
