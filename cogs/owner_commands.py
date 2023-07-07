@@ -62,6 +62,5 @@ class Admin(commands.Cog):
             print(f"Error reloading cogs: {e}")
 
 
-
 async def setup(bot):
     await bot.add_cog(Admin(bot))
