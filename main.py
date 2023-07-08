@@ -30,7 +30,7 @@ bot = commands.Bot(command_prefix="~", intents=intents)
 async def on_ready():
     print("Bot is ready.")
     await bot.change_presence(
-        activity=Activity(type=ActivityType.watching, name="PRICE ACTION")
+        activity=Activity(type=ActivityType.playing, name="Foxy Fight Club")
 
     )
     for filename in os.listdir("./cogs"):

@@ -1,5 +1,4 @@
 import json
-import re
 from typing import Optional
 from discord.ext import commands
 from discord import app_commands
@@ -28,18 +27,27 @@ class MMMCog(commands.Cog):
   @staticmethod
   async def get_highest_trait_floor(asset_id):
     """
-        Get the highest priced trait of a specific NFT
-        :params aseet_id: the pol;icy id of the specific NFT
-        """
+    Retrieve the highest priced trait information of a specific NFT asset.
+
+    :param asset_id: The policy ID of the specific NFT asset.
+    :type asset_id: str
+    :return: A tuple containing the name and value of the highest priced trait,
+             along with the corresponding floor price.
+    :rtype: tuple[str, str, float]
+    """
     url = f"https://server.jpgstoreapis.com/token/{asset_id}/traits-floor"
     results, status = await send_api_request(apiurl=url)
-    highest_floor = max(results, key=lambda x: x["floor"])["floor"]
-    highest_floor_trait_name = "".join(
-      [a for a in max(results, key=lambda x: x["floor"])["trait"].keys()])
-    highest_floor_trait_value = "".join(
-      [a for a in max(results, key=lambda x: x["floor"])["trait"].values()])
+    
+    # Filter out entries with null values for the floor
+    filtered_results = [entry for entry in results if entry['floor'] is not None]
+    
+    highest_entry = max(filtered_results, key=lambda x: x["floor"])
+    highest_floor = highest_entry["floor"]
+    highest_floor_trait_name = "".join(highest_entry["trait"].keys())
+    highest_floor_trait_value = "".join(highest_entry["trait"].values())
 
     return highest_floor_trait_name, highest_floor_trait_value, highest_floor
+
 
   async def create_progress_bar(self, value, max_value, bar_length=15):
     filled_length = int(bar_length * value / max_value)
@@ -126,12 +134,20 @@ class MMMCog(commands.Cog):
           value=f"Total Points:\u2000 **{result['total']}**\n"
           f"Ratings:\u2000 **{round((result['total_minus_hp']/result['max'])*100,2)}% {await self.create_progress_bar(value=result['total_minus_hp'],                                               max_value=result['max'])}**"
         )
-        embed.add_field(
-          name="Trait Value",
-          value=
-          f"Trait: {trait.title()} -> {trait_name.title()} \nValue: {int(floor)/1000000:,.0f} ₳",
-          inline=False,
-        )
+        try:
+          embed.add_field(
+            name="Trait Value",
+            value=
+            f"Trait: {trait.title()} -> {trait_name.title()} \nValue: {int(floor)/1000000:,.0f} ₳",
+            inline=False,
+          )
+        except Exception as e:
+          embed.add_field(
+            name="Trait Value",
+            value=
+            f"unable to fetch trait info at this time",
+            inline=False,
+          )
         embed.set_thumbnail(
           url=
           "https://hermonsters.com/core/views/96a589a588/assets/images/hm_logo.png"
