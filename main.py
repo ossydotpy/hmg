@@ -103,7 +103,7 @@ async def on_app_command_error(
 ):
     if isinstance(error, app_commands.CommandNotFound):
         await interaction.response.send_message(
-            "Invalid command. Type !help for a list of available commands.",
+            "Invalid command. Type ~help for a list of available commands.",
             ephemeral=True,
         )
     elif isinstance(error, app_commands.CommandOnCooldown):

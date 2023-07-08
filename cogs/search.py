@@ -6,17 +6,17 @@ import discord
 import datetime
 
 import functions.buttons as buttons
-from functions.custom_functions import send_api_request
+from functions.hm_functions import send_api_request
 
 
-class MMMCog(commands.Cog):
+class SearchCog(commands.Cog):
 
   def __init__(self, bot):
     self.bot = bot
 
   @commands.Cog.listener()
   async def on_ready(self):
-    print("nft cog ready")
+    print("nft search cog ready")
 
   @staticmethod
   def retrieve_features(path):
@@ -50,9 +50,22 @@ class MMMCog(commands.Cog):
 
 
   async def create_progress_bar(self, value, max_value, bar_length=15):
+    """
+    Create a progress bar.
+
+    Args:
+        value (int): The current value.
+        max_value (int): The maximum value.
+        bar_length (int, optional): The length of the progress bar. Defaults to 15.
+
+    Returns:
+        str: The progress bar string.
+
+    """
     filled_length = int(bar_length * value / max_value)
     bar = "█" * filled_length + "░" * (bar_length - filled_length)
     return f"[{bar}]"
+
 
   def cooldown_for_everyone_but_me(
     interaction: discord.Interaction, ) -> Optional[app_commands.Cooldown]:
@@ -65,19 +78,20 @@ class MMMCog(commands.Cog):
   @app_commands.choices(collection=[
     app_commands.Choice(name="HM Millitia", value="data/mmm_features.json"),
     app_commands.Choice(name="HM Prio Gang", value="data/prio_features.json"),
-    app_commands.Choice(name="HM Proto Gang", value="data/mmm_features.json"),
+    app_commands.Choice(name="HM Proto Gang", value="data/proto_features.json"),
   ])
   @app_commands.describe(
+    collection="Choose a collection from the list",
     number="Asset number example: 10",
     hidden="choose True to hide results otherwise False",
-    collection="Choose a collection from the list",
+    
   )
   async def search(
     self,
     interaction: discord.Interaction,
     collection: app_commands.Choice[str],
     number: str,
-    hidden: bool,
+    hidden: bool=False,
   ):
     """
         Query HM Assets. Input only asset number
@@ -86,7 +100,7 @@ class MMMCog(commands.Cog):
     try:
       nfts = self.retrieve_features(collection.value)
     except Exception as e:
-      print(e.with_traceback)
+      print(e.with_traceback())
       return
 
     results = [d for d in nfts if d["name"].split()[-1] == f"#{number}"]
@@ -176,4 +190,4 @@ class MMMCog(commands.Cog):
 
 
 async def setup(bot):
-  await bot.add_cog(MMMCog(bot))
+  await bot.add_cog(SearchCog(bot))

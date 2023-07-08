@@ -1,24 +1,32 @@
 # About this project
+This is a discord bot for the Hermonsters NFT project on cardano.
 
-The HMG Bot is a discord bot that's used for retrieving nft metadata for the Hermonsters project on cardano.
+its used for querying the nft metadata in discord.
+can display 
+- onchain metadata
+- floor price
+- holder distribution
+- NFT trait floor
 
-# How to run the app
-1. Clone the repo
-2. Get your bot keys from [here](https://discord.com/developers/)
-3. create a `.env` file in the main directory. 
-   copy and edit this variable
-   
-`BOT_TOKEN=your_bot_token`
-   to run the bot.
-edit other environmental variables if you want to use other fucntions that require them.\
-Reference the [.env exmaple](https://github.com/ossydotpy/hmg/blob/b0544bf402159db54dc35e580b040c351f86b888/.env%20example)) file for variable names
-5. Run main.py
-Make sure to invite the bot to your server!
+Note: this is specifically set u for [Hermonsters](https://hermonsters.com)\
+contact or modify the code to suit your needs for a specific project\
 
-# Customize the bot for your project.
-You can do this by 
-- change the policy ID in [this code](https://github.com/ossydotpy/hmg/blob/product/functions/get_metadata.py)
-- select your desired features using [this code](https://github.com/ossydotpy/hmg/blob/product/functions/save_features.py)
-- modify [this code](https://github.com/ossydotpy/hmg/blob/product/cogs/prio_cog.py) to search through your saved features.
+# setup instructions
+ - Clone the repo
+ - Get your discord bot keys [here](https://discord.com/developers/)
+ - Get your Blockfrost Api Key [here](https://blockfrost.io/)
+ - create a `.env` file in the main directory. 
+   In the `.env` file copy, paste and edit the following code.
+   ```
+   BOT_TOKEN=your_bot_token
+   BLOCKFROST_API_KEY=your api key here
 
-- star this repo(haha, not required)
+
+   add all other private information in ths file
+   they can be called with `os.getenv(VARIABLENAME)` anywhere.
+   ```
+ - Start the discord bot by running `python main.py`
+ - Invite your bot to your server.
+ - use `~sync` on first launch to sync the commands to your server.
+
+ - Star this repo [optional]

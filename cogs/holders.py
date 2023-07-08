@@ -2,7 +2,7 @@ from typing import Optional
 import discord
 from discord import app_commands
 from discord.ext import commands
-from functions.custom_functions import send_api_request
+from functions.hm_functions import send_api_request
 from functions.buttons import Buttons
 from datetime import datetime
 import math
